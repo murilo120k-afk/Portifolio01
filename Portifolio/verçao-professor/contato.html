@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koncorp Industries — Estrutura do Projeto</title>
+  <meta name="description" content="Estrutura base do projeto institucional da Koncorp Industries, startup especializada em inteligência artificial avançada." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css">  
+</head>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="../img/KonCorp-logo.png" alt="Logo" class="logo-img">
+      </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+    </button>
+    <nav id="site-nav" class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="serviços.html">Serviços</a></li>
+        <li><a href="cases.html">Cases</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+
+    <section id="contato" class="section">
+      <div class="container contact-grid">
+        <div class="surface contact-card reveal">
+          <span class="eyebrow">Contato</span>
+          <h2>Vamos conversar sobre inovação aplicada.</h2>
+          <p>
+            Entre em contato com a Koncorp Industries para conhecer soluções em inteligência artificial avançada alinhadas às suas necessidades.
+          </p>
+
+          <ul class="contact-list">
+            <li><strong>E-mail:</strong> contato@koncorpindustries.com</li>
+            <li><strong>Telefone:</strong> (95) 4000-2026</li>
+            <li><strong>Localização:</strong> Boa Vista — RR</li>
+          </ul>
+        </div>
+
+        <div class="surface contact-form reveal">
+          <form>
+            <label for="nome">
+              Nome
+              <input id="nome" name="nome" type="text" placeholder="Digite seu nome completo" />
+            </label>
+
+            <label for="email">
+              E-mail
+              <input id="email" name="email" type="email" placeholder="Digite seu melhor e-mail" />
+            </label>
+
+            <label for="assunto">
+              Assunto
+              <input id="assunto" name="assunto" type="text" placeholder="Digite o assunto da mensagem" />
+            </label>
+
+            <label for="mensagem">
+              Mensagem
+              <textarea id="mensagem" name="mensagem" placeholder="Descreva sua necessidade ou projeto"></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© 2026 Koncorp Industries. Todos os direitos reservados.</p>
+      <nav class="footer-mini-nav" aria-label="Navegação do rodapé">
+        <a href="#home">Home</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#cases">Cases</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const siteNav = document.querySelector('.site-nav');
+
+    if (menuBtn && siteNav) {
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        siteNav.classList.toggle('open');
+      });
+
+      siteNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 760) {
+            menuBtn.setAttribute('aria-expanded', 'false');
+            siteNav.classList.remove('open');
+          }
+        });
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
